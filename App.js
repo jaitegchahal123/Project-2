@@ -7,20 +7,37 @@ import MovieListScreen from "./screens/MovieListScreen/MovieListScreen.main";
 import MovieDetailScreen from "./screens/MovieDetailScreen/MovieDetailScreen.main";
 import MovieFilterScreen from "./screens/MovieFilterScreen/MovieFilterScreen.main";
 
-/* TODO: 
 
-  This app has three screens:
-    (1) MovieListScreen
-    (2) MovieDetailScreen
-    (3) MovieFilterScreen
+/* TODO:
 
-  Screens (1) and (2) are on the same navigation stack.
-  Screen (3) is presented modally.
 
-  This setup is identical to the setup in the React Navigation documentation.
-  Read the example carefully to set up this app's screen heirarchy in a similar manner.
+ This app has three screens:
+   (1) MovieListScreen
+   (2) MovieDetailScreen
+   (3) MovieFilterScreen
 
-  https://reactnavigation.org/docs/modal */
+
+ Screens (1) and (2) are on the same navigation stack.
+ Screen (3) is presented modally.
+
+
+ This setup is identical to the setup in the React Navigation documentation.
+ Read the example carefully to set up this app's screen heirarchy in a similar manner.
+
+
+ https://reactnavigation.org/docs/modal */
+ const RootStack = createStackNavigator();
 export default function App() {
-  return <NavigationContainer>{}</NavigationContainer>;
+ return <NavigationContainer>{
+     <RootStack.Navigator>
+       <RootStack.Group>
+         <RootStack.Screen name="MOVIES" component={MovieListScreen} />
+         <RootStack.Screen name="DETAILS" component={MovieDetailScreen} />
+         <RootStack.Screen name="FILTER" component={MovieFilterScreen} />
+       </RootStack.Group>
+     </RootStack.Navigator>
+    }</NavigationContainer>;
 }
+
+
+
