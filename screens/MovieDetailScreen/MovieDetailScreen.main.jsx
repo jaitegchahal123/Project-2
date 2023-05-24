@@ -5,7 +5,10 @@ import { styles } from "./MovieDetailScreen.styles";
 
 export default function MovieDetailScreen({ route }) {
  // TODO: Recieve the movieItem by destructuring route params.
+
  const {movieItem} = route.params;
+ 
+ console.log(movieItem);
 
 
 

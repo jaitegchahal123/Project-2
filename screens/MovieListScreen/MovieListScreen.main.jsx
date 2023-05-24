@@ -20,14 +20,14 @@ export default function MovieListScreen({ navigation, route }) {
  // TODO: Fill out the methods below.
  const selectedMovie = (movieItem) => {
    navigation.navigate(
-     "Movie DetailS", {movieItem: movieItem}
+     "DETAILS", {movieItem: movieItem}
      )
  };
 
 
  const selectedFilterButton = () => {
    navigation.navigate(
-     "Movie Filter", {actor: actor}
+     "FILTER", {actor: actor}
      )
  };
 
@@ -37,7 +37,11 @@ export default function MovieListScreen({ navigation, route }) {
      // TODO: Add a "Filter" button to the right bar button.
      // It should lead to the MovieFilterScreen, and pass the "actors" state
      // variable as a parameter.
-     navigation.setOptions({headerRight: () => (<Button onPress = {selectedFilterButton} title = "FILTER" />),});
+     navigation.setOptions({headerRight: () => (
+
+     <Button onPress = {()=>selectedFilterButton()} title = "FILTER" />
+
+     ),});
    },
    [
      navigation
@@ -51,10 +55,10 @@ export default function MovieListScreen({ navigation, route }) {
      //make a dependency, so it looks cleaner earlier
 
 
-     const currRoute = route.params.actor;
+     //const currRoute = route.params.actor;
 
 
-     if(route.params.actor) {setActor(currRoute);}
+     if(route.params?.actor) {setActor(route.params.actor);}
      /* TODO: Recieve the updated list of actors from the filter screen here.
          See https://reactnavigation.org/docs/params/#passing-params-to-a-previous-screen
          for an example of how to send data BACKWARDS in the navigation stack.
@@ -63,7 +67,7 @@ export default function MovieListScreen({ navigation, route }) {
    [
      /* TODO: Insert dependencies here. What variable changes
        when we come back from the filter screen? */
-       currRoute
+       route.params?.actor
          ]
  );
 
@@ -122,9 +126,14 @@ export default function MovieListScreen({ navigation, route }) {
    <SafeAreaView style={styles.container}>
      {/* TODO: Add a SearchBar: https://reactnativeelements.com/docs/searchbar/.
                The third-party package should already be installed for you. */}
+        {/* <><Text>
+          
+          hello
+          </Text></> */}
+
        <SearchBar
          showLoading={false}
-         onChangeText={setCurr}
+         onChangeText={(some) => setCurr(some)}
          value={curr}
      />
 
